@@ -8,7 +8,7 @@ P = 1 - (math.factorial(365))/(365**n * math.factorial(365 - n))
 # aufgepasst bei math.paw und **, führt beides die gleiche Rechnung durch also "x hoch y"
 # math.paw verwendet float als Daten typ, ** nicht, deshalb eignet sich ** besser
 
-print(f"Die Wahrscheinlichkeit, dass jemand deinen Geburtstag teilt, liegt bei {P*100:.2f}%")
+print(f"Die Wahrscheinlichkeit, dass sich in einer Gruppe von {n} Personen zwei den gleichen Geburtstag teilen, liegt bei {P*100:.2f}%")
 
 
 

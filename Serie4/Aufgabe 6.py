@@ -11,8 +11,10 @@ tausend = list()
 
 # {key:value}
 dictionary = {i: 0 for i in range(2, 13)}
+
 [dictionary.update({i:dictionary[i] + 1}) for i in tausend]
 
+print(dictionary)
 max_key = max(dictionary, key=dictionary.get)
 print(max_key, dictionary[max_key])
 

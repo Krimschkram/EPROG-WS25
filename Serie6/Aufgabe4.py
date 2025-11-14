@@ -13,7 +13,6 @@ def myfilter(func, iterable):
     return result
 
 def myreduce(func, iterable):
-
     if len(iterable) == 0:
         raise TypeError("leer")
 
@@ -21,7 +20,6 @@ def myreduce(func, iterable):
 
     for x in iterable[1:]:
         result = func(result, x)
-
     return result
 
 

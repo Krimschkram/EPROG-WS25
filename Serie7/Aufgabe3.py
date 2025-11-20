@@ -1,3 +1,8 @@
+import math
+import random
+import time
+
+
 def merge(l1, l2):
     i = j = 0
     merged = []
@@ -35,4 +40,23 @@ def merge_sort(liste):
     # Merge der zwei sortierten Listen
     return merge(links_sortiert, rechts_sortiert)
 
+def messe_laufzeit(k_min=10, k_max=18):
+    print("k   n=2^k     t [s]      t/n")
+    print("-"*55)
+    for k in range(k_min, k_max + 1):
+        n = 2 ** k
+        # Zufällige Testliste der Länge n
+        liste = [random.randint(0, n) for _ in range(n)]
 
+        start = time.perf_counter()
+        merge_sort(liste)
+        ende = time.perf_counter()
+
+        t = ende - start
+        ratio_n = t / n
+
+        print(f"{k:2d}  {n:7d}  {t:8.5f}  {ratio_n:11.8f}")
+
+
+# Aufruf der Bonus-Messung:
+messe_laufzeit()

@@ -48,9 +48,9 @@ def messe_laufzeit(k_min=10, k_max=18):
         # Zufällige Testliste der Länge n
         liste = [random.randint(0, n) for _ in range(n)]
 
-        start = time.perf_counter()
+        start = time.time()
         merge_sort(liste)
-        ende = time.perf_counter()
+        ende = time.time()
 
         t = ende - start
         ratio_n = t / n

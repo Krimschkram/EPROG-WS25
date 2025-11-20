@@ -11,7 +11,7 @@ def diff(f,h0,eps, x):
             return phi_h2, h / 2
 
         # sonst weiter halbieren
-        return rek(h / 2)
+        return rek(h / 2)   
     return rek(h0)
 
 

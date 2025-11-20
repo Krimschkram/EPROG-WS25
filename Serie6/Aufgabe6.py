@@ -1,8 +1,11 @@
+import copy
+
+
 def reverse_rows_references(matrix):
     return matrix[::-1]   # nur Referenzen werden umgedreht
 
 def reverse_rows_copy(matrix):
-    return [row[:] for row in matrix[::-1]]  # tiefe Kopie der Zeilen
+    return copy.deepcopy(matrix[::-1])  # tiefe Kopie der Zeilen
 
 A = [
     [1, 2],
@@ -11,6 +14,7 @@ A = [
 
 # Variante A (Referenzen)
 R1 = reverse_rows_references(A)
+print(R1)
 
 R1[0][0] = 999    # wir ändern R1
 
@@ -23,6 +27,7 @@ A = [
 ]
 
 R2 = reverse_rows_copy(A)
+print(R2)
 R2[0][0] = 999
 
 print("A nach Änderung in R2:", A)  # A bleibt unverändert -> unabhängig!

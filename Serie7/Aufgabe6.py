@@ -44,6 +44,10 @@ dist[goal[0]][goal[1]] = 0
 
 # --- NEU: Update mit 8 Nachbarn (4 orthogonal, 4 diagonal) ---
 def update(dist, maze, pos):
+    # Diese Methode breitet die Distanzwerte rekursiv vom Ziel aus.
+    # Sie trägt in 'dist' für jedes Feld die kürzeste Entfernung zum Ziel ein.
+    # Dadurch entsteht eine "Distance Map" wie bei Dijkstra.
+
     x, y = pos
     n = len(maze)
 
@@ -71,8 +75,8 @@ def find_shortest_path(dist, path):
     x, y = path[-1]
     if dist[x][y] != 0:  # noch nicht am Ziel
         moves = [
-            (-1, 0), (1, 0), (0,-1), (0, 1),
-            (-1,-1), (-1, 1), (1,-1), (1, 1)
+            (-1, -1), (-1, 1), (1, -1), (1, 1),
+            (-1, 0), (1, 0), (0,-1), (0, 1)
         ]
         # Nachbar mit kleinerer Distanz suchen
         for dx, dy in moves:
@@ -86,7 +90,9 @@ def find_shortest_path(dist, path):
 # ausführen
 dist = [[float('inf')]*n for _ in range(n)]
 dist[goal[0]][goal[1]] = 0
+print(dist)
 update(dist, maze, goal)
+
 
 path = [start]
 path = find_shortest_path(dist, path)

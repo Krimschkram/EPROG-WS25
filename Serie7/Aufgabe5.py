@@ -1,6 +1,7 @@
 def diff(f,h0,eps, x):
     def phi(h):
         return (f(x+h) - f(x))/h
+        # (f(x + h) - 2*f(x) + f(x - h)) / (h*h)
 
     def rek(h):
         phi_h = phi(h)
@@ -13,7 +14,6 @@ def diff(f,h0,eps, x):
         # sonst weiter halbieren
         return rek(h / 2)   
     return rek(h0)
-
 
 
 def f1(x):

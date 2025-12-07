@@ -1,13 +1,11 @@
-def rek_list(L):
-    resul = []
-    for element in L:
-        if type(element) == int:
-            return element
-        if type(element) == list:
-            resul.append(rek_list(element))
+from math import sin, cos
 
+from matplotlib import pyplot as plt
 
+def f(x):
+    return x**3 - x**2 + 1
+x_achse = [i for i in range(-1,1.1, 0.1)]
 
+print(x_achse)
 
-
-my_list = [1,2,3,4,5, [10,11, 12, [13, 14]], 20, 30]
+#plt.show()

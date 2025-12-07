@@ -2,7 +2,7 @@ class mySet:
     def __init__(self, list):
         self.items = []
         for i in list:
-            if self.items.__contains__(i):
+            if i in self.items:
                 continue
             self.items.append(i)
 
@@ -15,9 +15,9 @@ class mySet:
             if i not in other.items:
                 subtract.append(i)
 
-        for i in other.items:
-            if i not in self.items:
-                subtract.append(i)
+        #for i in other.items:
+        #    if i not in self.items:
+        #        subtract.append(i)
 
         return mySet(subtract)
 
@@ -29,10 +29,13 @@ class mySet:
             self.items.append(a)
 
 
-i = mySet([1,2,3,3,3,3,3])
+i = mySet([1,2,3])
 i2 = mySet([3,5,6])
-print(i)
-print(i + i2)
-print(i - i2)
 
+i3 = i - i2
 
+print(i3)
+
+i3.add(1)
+
+print(i3)

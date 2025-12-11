@@ -1,52 +1,29 @@
-from matplotlib import pyplot as plt
+import matplotlib.pyplot as plt
 from matplotlib.patches import Circle, Rectangle
 
-def plot_tictactoe(board):
-    """
-    board: 3x3-Matrix aus Strings " ", "x", "o"
-    z.B. [["x","o"," "],
-          [" ","x","o"],
-          ["o"," ","x"]]
-    """
-    fig, ax = plt.subplots()
+def draw_tictactoe(board):
+    fig, ax = plt.subplots(3,3)
+   # plt.subplots_adjust(left=0, right=1, top=1, bottom=0, wspace=0, hspace=0)
 
-    # Spielfeld (3x3-Gitter) zeichnen
-    for i in range(1, 3):
-        # vertikale Linien
-        ax.plot([i, i], [0, 3], color="black")
-        # horizontale Linien
-        ax.plot([0, 3], [i, i], color="black")
-
-    # Einträge zeichnen
+    # Alle Board-Felder zeichnen
     for row in range(3):
         for col in range(3):
-            cell = board[row][col]
-            # Mittelpunkt des Feldes
-            x_center = col + 0.5
-            # row 0 soll oben sein → 2 - row
-            y_center = 2.5 - row
+            ax[row][col].set_aspect('equal')
+            ax[row][col].set_xticks([]) #achsen deativieren
+            ax[row][col].set_yticks([]) #achsen deativieren
 
-            if cell == "o":
-                # Kreis für "o"
-                circle = Circle((x_center, y_center), 0.35,
-                                fill=False, linewidth=2)
-                ax.add_patch(circle)
+            if board[row][col] == "x":
+                circle = Circle((0.5, 0.5), 0.4)
+                ax[row][col].add_patch(circle)
 
-            elif cell == "x":
-                # Rechteck (oder andere Form) für "x"
-                rect = Rectangle((col + 0.15, y_center - 0.35),
-                                 0.7, 0.7,
-                                 fill=False, linewidth=2)
-                ax.add_patch(rect)
+            if board[row][col] == "o":
+                rect = Rectangle((0.1, 0.1), 0.8,0.8)
+                ax[row][col].add_patch(rect)
 
-    ax.set_xlim(0, 3)
-    ax.set_ylim(0, 3)
-    ax.set_aspect("equal")
-    ax.set_xticks([])
-    ax.set_yticks([])
-    plt.title("Tic-Tac-Toe")
-    plt.tight_layout()
     plt.show()
+
+
+
 
 board = [
     ["x", "o", " "],
@@ -54,4 +31,4 @@ board = [
     ["o", " ", "x"]
 ]
 
-plot_tictactoe(board)
+draw_tictactoe(board)

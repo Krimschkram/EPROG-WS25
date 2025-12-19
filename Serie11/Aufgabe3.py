@@ -1,5 +1,8 @@
 import time
+import sys
 import matplotlib.pyplot as plt
+
+sys.setrecursionlimit(20000)
 
 def quicksort(arr):
     if len(arr) <= 1:
@@ -11,43 +14,46 @@ def quicksort(arr):
     return quicksort(left) + middle + quicksort(right)
 
 
-def worst_case_same_elements(n):
-    # Alle Elemente sind gleich
-    # left = [], right = []
-    # In jedem Rekursionsschritt werden wieder n Elemente betrachtet
-    return [1] * n
+# OPTIMAL / "GUT": balancierte Teilungen => O(n log n)
+def best_case_balanced(n):
+    return list(range(n))  # sortiert, Pivot ist ungefähr Median
 
 
-def worst_case_unbalanced(n):
-    # Konstruktion eines Arrays, das zu sehr unausgeglichenen Partitionen führt
-    arr = list(range(1, n))
-    arr.insert(len(arr)//2, 0)  # kleinstes Element in die Mitte
-    return arr
-
-def measure_time(data):
-    start = time.time()
-    quicksort(data)
-    end = time.time()
-    return end - start
+# SUBOPTIMAL / WORST: in jedem Schritt extrem unbalanciert => O(n^2)
+def worst_case_mid_pivot(n):
+    L = []
+    for x in range(n - 1, -1, -1):
+        L.insert(len(L) // 2, x)
+    return L
 
 
-sizes = [100, 200, 400, 800, 1600]
+def measure_time(data, repeats=3):
+    best = float("inf")
+    for _ in range(repeats):
+        start = time.perf_counter()
+        quicksort(data)
+        end = time.perf_counter()
+        best = min(best, end - start)
+    return best
 
-times_same = []
-times_unbalanced = []
+
+sizes = [100, 200, 400, 800, 1200, 1600]
+
+times_best = []
+times_worst = []
 
 for n in sizes:
-    data1 = worst_case_same_elements(n)
-    data2 = worst_case_unbalanced(n)
+    data_best = best_case_balanced(n)
+    data_worst = worst_case_mid_pivot(n)
 
-    times_same.append(measure_time(data1))
-    times_unbalanced.append(measure_time(data2))
+    times_best.append(measure_time(data_best))
+    times_worst.append(measure_time(data_worst))
 
-plt.plot(sizes, times_same, marker='o', label="Alle Elemente gleich")
-plt.plot(sizes, times_unbalanced, marker='o', label="Unausgeglichene Teilung")
+plt.plot(sizes, times_best, marker='o', label="Optimal (balanciert) ~ O(n log n)")
+plt.plot(sizes, times_worst, marker='o', label="Suboptimal (Worst-Case) ~ O(n^2)")
 
 plt.xlabel("n")
 plt.ylabel("Zeit (Sekunden)")
-plt.title("QuickSort Worst-Case-Laufzeit")
+plt.title("QuickSort: optimal vs. suboptimal (Pivot = mittleres Element)")
 plt.legend()
 plt.show()

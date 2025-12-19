@@ -22,3 +22,5 @@ arr_2d = list_to_numpy(list_2d)
 list_3d = [[[1, 2],[3, 4]],[[5, 6],[7, 8]]]
 arr_3d = list_to_numpy(list_3d)
 
+print(arr_3d)
+

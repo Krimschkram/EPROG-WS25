@@ -24,6 +24,7 @@ def worst_case_mid_pivot(n):
     L = []
     for x in range(n - 1, -1, -1):
         L.insert(len(L) // 2, x)
+    print(L)
     return L
 
 

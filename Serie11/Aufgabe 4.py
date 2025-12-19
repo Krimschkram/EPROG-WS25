@@ -4,12 +4,6 @@ import numpy as np
 def list_to_numpy(lst):
     brr = np.array(lst)
 
-
-    copy = brr.copy()
-    view = brr.view()
-
-    copy = 0
-    view = 0
     print("Array:")
     print(brr)
     print("Shape (Dimensionen):", brr.shape)

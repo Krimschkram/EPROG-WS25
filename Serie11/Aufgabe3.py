@@ -2,7 +2,7 @@ import time
 import sys
 import matplotlib.pyplot as plt
 
-sys.setrecursionlimit(20000)
+
 
 def quicksort(arr):
     if len(arr) <= 1:
@@ -31,9 +31,9 @@ def worst_case_mid_pivot(n):
 def measure_time(data, repeats=3):
     best = float("inf")
     for _ in range(repeats):
-        start = time.perf_counter()
+        start = time.time()
         quicksort(data)
-        end = time.perf_counter()
+        end = time.time()
         best = min(best, end - start)
     return best
 
